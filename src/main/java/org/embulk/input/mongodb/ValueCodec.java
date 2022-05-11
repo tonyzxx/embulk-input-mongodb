@@ -126,6 +126,8 @@ public class ValueCodec implements Codec<Value>
         switch (reader.getCurrentBsonType()) {
             // https://docs.mongodb.com/manual/reference/bson-types/
             // https://github.com/mongodb/mongo-java-driver/tree/master/bson/src/main/org/bson/codecs
+            case DECIMAL128:
+                return newFloat(reader.readDecimal128().bigDecimalValue().floatValue());
             case DOUBLE:
                 return newFloat(reader.readDouble());
             case STRING:
